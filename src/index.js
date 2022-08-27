@@ -2,7 +2,6 @@
 const imageUrl = "http://localhost:3000/images";
 const commentsUrl = "http://localhost:3000/comments";
 
-
 //Fetch Dog Details
 function fetchDogDetails (id) {
     fetch(`${imageUrl}/${id}`)
@@ -16,10 +15,9 @@ function fetchDogDetails (id) {
         //Add Like Functionality
         const heart = document.getElementById("like-button");
         heart.addEventListener("click", () => {
-            const dogLikes = document.getElementById("like-count").innerText = `${dog.likes} likes`;
+            const dogLikes = document.getElementById("like-count");
             dog.likes += 1;
-            dogLikes.innerText = dog.likes;
-            console.log(dogLikes)
+            dogLikes.innerText = `${dog.likes} likes`;
         })
     });
 }
