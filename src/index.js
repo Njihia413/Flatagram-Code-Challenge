@@ -47,6 +47,14 @@ function createNewComment () {
 
         appendNewComment(newComment);
         event.target.reset();  //Reset the form
+
+        //Delete comment from comment list
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-button";
+        deleteBtn.textContent = "Delete";
+        newComment.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener("click", deleteNewComment)
     })
 }
 
@@ -54,6 +62,12 @@ function createNewComment () {
 function appendNewComment(comment) {
     document.getElementById("comments-list").appendChild(comment);
 }
+
+function deleteNewComment (event) {
+    event.target.parentNode.remove();
+}
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     fetchDogDetails(1);
