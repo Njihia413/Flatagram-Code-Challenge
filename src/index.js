@@ -12,10 +12,19 @@ function fetchDogDetails (id) {
 
         document.getElementById("card-image").src = dog.image;
 
-        document.getElementById("like-count").innerText = `${dog.likes} likes`;
+
+        //Add Like Functionality
+        const heart = document.getElementById("like-button");
+        heart.addEventListener("click", () => {
+            const dogLikes = document.getElementById("like-count").innerText = `${dog.likes} likes`;
+            dog.likes += 1;
+            dogLikes.innerText = dog.likes;
+            console.log(dogLikes)
+        })
     });
 }
 
+//Fetch Dog Comments
 function fetchDogComments () {
     fetch(`${commentsUrl}`)
     .then(response => response.json())
@@ -26,8 +35,29 @@ function fetchDogComments () {
     })
 }
 
+//Create a new comment
+function createNewComment () {
+    document.getElementById("comment-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const commentForm = event.target;
+
+        const newCommentDescription = document.getElementById("comment");
+        const newComment = document.createElement("li");
+        newComment.innerText = newCommentDescription.value;
+
+        appendNewComment(newComment);
+        event.target.reset();  //Reset the form
+    })
+}
+
+//Add comment to comment list
+function appendNewComment(comment) {
+    document.getElementById("comments-list").appendChild(comment);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     fetchDogDetails(1);
-    fetchDogComments()
+    fetchDogComments();
+    createNewComment();
 })
 
