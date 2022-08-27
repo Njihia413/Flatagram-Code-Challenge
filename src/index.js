@@ -67,11 +67,23 @@ function deleteNewComment (event) {
     event.target.parentNode.remove();
 }
 
-
+//Toggle Image Functionality
+function getDogImage () {
+    document.getElementById("card-title").addEventListener("click", () => {
+        const dogImage = document.getElementById("card-image");
+        //console.log(dogImage)
+        if(dogImage.style.display === "none") {
+            dogImage.style.display = "block"
+        } else {
+            dogImage.style.display = "none"
+        }
+    })
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     fetchDogDetails(1);
     fetchDogComments();
     createNewComment();
+    getDogImage();
 })
 
